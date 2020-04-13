@@ -7,37 +7,40 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	
-
 
     <title>Real Time Chart</title>
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+
   </head>
   <style>
-
+  .list-group {
+    overflow-y: scroll;
+    max-height: 350px;
+}
   
   </style>
   <body>
   
-  <div id="app">
+
 	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-6">
-				<div class="chatBox">
+		<div class="row" id="app">
+			<div class="offset-4 col-4 offset-sm-1 col-sm-10">
+				<li class="list-group-item active text-center">Chat Room </li>
 				<ul class="list-group" v-chat-scroll>
-				  <li class="list-group-item active text-center"><h2>Chat Room</h2></li>
-				  <message v-for="value in chat.message">
-				    @{{value}}
+				  <message
+				  v-for="value,index in chat.message"
+				  
+				  color="warning"
+				 
+				  >
+				  	@{{ value }}
 				  </message>
 				</ul>
-				</div>
-<input class="form-control" placeholder="type some" v-model="message" @keyup.enter="send">
-
-				
+				  <input type="text" class="form-control mt-5" placeholder="Type your message here..." v-model='message' @keyup.enter='send'>
+				  <br>
 			</div>
 		</div>
-	
 	</div>
-  </div>
   
 
     <!-- Optional JavaScript -->
